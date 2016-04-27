@@ -4,12 +4,13 @@ public class Ataque {
 	private int poder;
 	private String nome;
 	
-	public int getPoder() {
-		return poder;
+	public Ataque(int poder, String nome){
+		this.poder = poder;
+		this.nome = nome;
 	}
 	
-	public void fazerAtaque(){
-		System.out.println("batata");
+	public int getPoder() {
+		return poder;
 	}
 	
 	public void setPoder(int poder) {

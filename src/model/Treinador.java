@@ -1,18 +1,27 @@
 package model;
 
-
-public class Treinador{
+public class Treinador {
 
 	private Pokemon[] pokemons;
 	private String nome;
-	private Pokemon pokAtivo;
+	private int pokAtivo;
 	private int poksDerrotados;
 
 	public Treinador(String nome, Pokemon[] pokemons) {
 		this.nome = nome;
 		this.pokemons = pokemons;
 		poksDerrotados = 0;
-		pokAtivo = pokemons[0];
+		pokAtivo = 0;
+	}
+
+	public int getNextPokemon() {
+		if (poksDerrotados != pokemons.length) {
+			for (int cont = 0; cont < pokemons.length; cont++) {
+				if (!(pokemons[cont].getNome().equals(pokemons[pokAtivo].getNome())) && pokemons[cont].getHp() > 0)
+					return cont;
+			}
+		}
+		return -1;
 	}
 
 	public Pokemon[] getPokemons() {
@@ -31,11 +40,11 @@ public class Treinador{
 		this.nome = nome;
 	}
 
-	public Pokemon getPokAtivo() {
+	public int getPokAtivo() {
 		return pokAtivo;
 	}
 
-	public void setPokAtivo(Pokemon pokAtivo) {
+	public void setPokAtivo(int pokAtivo) {
 		this.pokAtivo = pokAtivo;
 	}
 
