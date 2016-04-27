@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 abstract public class Event {
 	private long evtTime;

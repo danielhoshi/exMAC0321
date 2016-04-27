@@ -2,10 +2,10 @@ package controller;
 
 import java.util.Random;
 
-import Model.Ataque;
-import Model.Treinador;
-import Utils.Controller;
-import Utils.Event;
+import model.Ataque;
+import model.Treinador;
+import utils.Controller;
+import utils.Event;
 
 public class Batalha extends Controller {
 	Treinador t1, t2, tTurno, tAdversario;

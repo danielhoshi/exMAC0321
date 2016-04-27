@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public class EventSet {
 	private Event[] events = new Event[100];

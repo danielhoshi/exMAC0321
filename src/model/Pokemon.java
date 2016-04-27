@@ -1,7 +1,7 @@
-package Model;
+package model;
 
-import Utils.Controller;
-import Utils.Tipo;
+import utils.Controller;
+import utils.Tipo;
 
 public class Pokemon extends Controller{
 

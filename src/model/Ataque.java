@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public class Ataque {
 	private int poder;
@@ -7,6 +7,11 @@ public class Ataque {
 	public int getPoder() {
 		return poder;
 	}
+	
+	public void fazerAtaque(){
+		System.out.println("batata");
+	}
+	
 	public void setPoder(int poder) {
 		this.poder = poder;
 	}
