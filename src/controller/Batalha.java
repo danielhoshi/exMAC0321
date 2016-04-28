@@ -23,7 +23,7 @@ public class Batalha extends Controller {
 		tAdversario = aux;
 	}
 
-	private class Atacar extends Event {
+	class Atacar extends Event {
 		public Atacar(long eventTime) {
 			super(eventTime);
 		}
@@ -84,7 +84,7 @@ public class Batalha extends Controller {
 						+ " para sua pokebola, e escolheu " + tTurno.getPokemons()[tTurno.getPokAtivo()].getNome()
 						+ "!";
 			}
-			return "";
+			return "O clima fica tenso!";
 		}
 	}
 
@@ -134,39 +134,44 @@ public class Batalha extends Controller {
 		Ataque at9 = new Ataque(100, "Mega Chute");
 		Ataque at10 = new Ataque(0, "Ronco");
 
-		Pokemon pok1 = new Pokemon("Pikachu", Tipo.ELETRICO, 100, at1, at2, at3, at4);
-		Pokemon pok2 = new Pokemon("Eevee", Tipo.NORMAL, 100, at2, at5, at4, at6);
-		Pokemon pok3 = new Pokemon("Snorlax", Tipo.LUTADOR, 100, at7, at8, at9, at10);
-
-		Pokemon[] poks = { pok1, pok2, pok3 };
+		Pokemon[] poks1 = { new Pokemon("Pikachu", Tipo.ELETRICO, 100, at1, at2, at3, at4),
+				new Pokemon("Eevee", Tipo.NORMAL, 100, at2, at5, at4, at6),
+				new Pokemon("Snorlax", Tipo.LUTADOR, 100, at7, at8, at9, at10) };
+		Pokemon[] poks2 = { new Pokemon("Pikachu", Tipo.ELETRICO, 100, at1, at2, at3, at4),
+				new Pokemon("Eevee", Tipo.NORMAL, 100, at2, at5, at4, at6),
+				new Pokemon("Snorlax", Tipo.LUTADOR, 100, at7, at8, at9, at10) };
 
 		long tm;
 		Random random = new Random();
 		int evento;
 
-		Batalha battle = new Batalha(new Treinador("Ash", poks), new Treinador("Myst", poks));
+		Batalha battle = new Batalha(new Treinador("Ash", poks1), new Treinador("Myst", poks2));
 
 		while (battle.tTurno.getPokAtivo() != -1 && battle.tAdversario.getPokAtivo() != -1) {
 			tm = System.currentTimeMillis();
-			evento = random.nextInt(4);
+			evento = random.nextInt(5);
+			System.out.println(battle.tTurno.getPokemons()[battle.tTurno.getPokAtivo()].getNome() + ": "
+					+ battle.tTurno.getPokemons()[battle.tTurno.getPokAtivo()].getHp() + " "
+					+ battle.tAdversario.getPokemons()[battle.tAdversario.getPokAtivo()].getNome() + ": "
+					+ battle.tAdversario.getPokemons()[battle.tAdversario.getPokAtivo()].getHp());
 			switch (evento) {
+			case 0:
 			case 1:
-				battle.addEvent(battle.new Atacar(tm + 1000));
+				battle.addEvent(battle.new Atacar(tm + 127));
 				break;
 			case 2:
-				battle.addEvent(battle.new TrocarPokemon(tm + 2000));
+				battle.addEvent(battle.new TrocarPokemon(tm + 127));
 				break;
 			case 3:
-				battle.addEvent(battle.new UsarItem(tm + 1000));
+				battle.addEvent(battle.new UsarItem(tm + 127));
 				break;
 			case 4:
 				int aux = random.nextInt(5);
 				if (aux == 0)
-					battle.addEvent(battle.new Fugir(tm + 1000));
+					battle.addEvent(battle.new Fugir(tm + 127));
 				else
-					battle.addEvent(battle.new Atacar(tm + 1000));
+					battle.addEvent(battle.new Atacar(tm + 127));
 			}
-			battle.addEvent(battle.new Atacar(tm + 5000));
 			battle.run();
 		}
 	}
